@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: otc
     cluster: otc
@@ -9,7 +8,6 @@ metadata:
   name: otc
   namespace: default
 spec:
-  replicas: 1
   selector:
     matchLabels:
       otc: "true"
@@ -27,39 +25,42 @@ spec:
         otc: "true"
     spec:
       containers:
-      - args:
-        - --http_port=8080
-        - --backend=127.0.0.1:80
-        - --service=microservices.qpathways.com
-        - --rollout_strategy=managed
-        - -z
-        - healthz
-        env:
+      - env:
         - name: QPATHWAYS_DB_HOST
           valueFrom:
             configMapKeyRef:
               key: QPATHWAYS_DB_HOST
-              name: qpathways-config
+              name: qpathways-staging-config
         - name: QPATHWAYS_DB_NAME
           valueFrom:
             configMapKeyRef:
               key: QPATHWAYS_DB_NAME
-              name: qpathways-config
+              name: qpathways-staging-config
         - name: QPATHWAYS_DB_PORT
           valueFrom:
             configMapKeyRef:
               key: QPATHWAYS_DB_PORT
-              name: qpathways-config
+              name: qpathways-staging-config
+        - name: QPATHWAYS_NOTIFICATION_DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: QPATHWAYS_NOTIFICATION_DB_NAME
+              name: qpathways-staging-config
+        - name: QPATHWAYS_AUTH_DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: QPATHWAYS_AUTH_DB_NAME
+              name: qpathways-staging-config
         - name: DB_USER
           valueFrom:
             secretKeyRef:
               key: DB_USER
-              name: qpathways-db-credential
+              name: qpathways-staging-secret
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               key: DB_PASSWORD
-              name: qpathways-db-credential
+              name: qpathways-staging-secret
         image: gcr.io/GOOGLE_CLOUD_PROJECT/github.com/triarqhealthotc/otc-services:COMMIT_SHA
         imagePullPolicy: IfNotPresent
         name: otcservices
@@ -78,3 +79,4 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 30
 status: {}
+
