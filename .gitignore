@@ -3,3 +3,7 @@ target/
 Jenkinsfile
 Dockerfile
 cloudbuild.yaml
+<<<<<<< Upstream, based on development
+=======
+
+>>>>>>> b80a8e7 .gitignore
