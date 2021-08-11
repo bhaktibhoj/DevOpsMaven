@@ -14,7 +14,7 @@ COPY pom.xml /home/app/
 RUN mvn clean package -DskipTests 
 
 FROM openjdk:8-alpine
-COPY --from=0 /home/app/target/otc.jar /tmp/otcservice.jar
+COPY --from=0 /home/app/target/otcservice.jar /tmp/otcservice.jar
 
 #COPY --from=build /home/app/target/otc-0.0.2-SNAPSHOT.jar /tmp/otcservice.jar
 
