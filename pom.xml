@@ -60,6 +60,14 @@
                     <mainClass>org.web3j.sample.Application</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-jar-plugin</artifactId>
+             <version>2.3.2</version>
+             <configuration>
+                 <finalName>otc</finalName>                   
+             </configuration>
+         </plugin>    
         </plugins>
     </build>
 
