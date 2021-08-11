@@ -1,6 +1,6 @@
 pipeline {
     environment {
-    PROJECT = "	myfirst-devops-project"
+    PROJECT = "myfirst-devops-project"
     APP_NAME = "webapp"
     CLUSTER = "first-gke-cluster"
     CLUSTER_ZONE = "asia-south2-a"
