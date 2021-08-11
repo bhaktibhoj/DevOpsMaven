@@ -37,7 +37,7 @@ pipeline {
             steps {
                 echo 'gcp rolling update....'
 	    sh 'gcloud container clusters get-credentials first-gke-cluster --region asia-south2 --project myfirst-devops-project'
-            sh 'kubectl set image -n default deployment.v1beta1.extensions/webapp webapp=${IMAGE_TAG}'
+            sh 'kubectl set image -n default deployment webapp webapp=${IMAGE_TAG}'
             }
         }
 	    
